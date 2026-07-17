@@ -1,7 +1,7 @@
-[README.md](https://github.com/user-attachments/files/30136549/README.md)
+[README.md](https://github.com/user-attachments/files/30137606/README.md)
 # House Price Predictor
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-almadhoun%2Fhouse--price--app-2496ED?logo=docker&logoColor=white)](https://hub.docker.com/r/almadhoun/house-price-app)
+[![Docker Hub](<https://img.shields.io/badge/Docker%20Hub-almadhoun%2Fhouse--price--app-2496ED?logo=docker&logoColor=white>)](https://hub.docker.com/r/almadhoun/house-price-app)
 
 An end-to-end machine-learning project for the [Kaggle *House Prices – Advanced Regression Techniques*](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques) dataset (Ames, Iowa housing data).
 
@@ -104,18 +104,19 @@ The API expects a `predictions` table to already exist. Create it once:
 
 ```sql
 CREATE TABLE predictions (
-    id              SERIAL PRIMARY KEY,
-    overall_qual    INTEGER NOT NULL,
-    gr_liv_area     INTEGER NOT NULL,
-    exter_qual      TEXT    NOT NULL,
-    garage_cars     INTEGER NOT NULL CHECK (garage_cars > 0),
-    kitchen_qual    TEXT    NOT NULL,
-    total_bsmt_sf   INTEGER NOT NULL,
-    year_built      INTEGER NOT NULL,
-    first_flr_sf    INTEGER NOT NULL,
-    garage_finish   TEXT    NOT NULL,
-    full_bathrooms  INTEGER NOT NULL CHECK (full_bathrooms > 0),
-    predicted_price DOUBLE PRECISION NOT NULL
+    id SERIAL PRIMARY KEY,
+    overall_qual INTEGER CHECK (overall_qual BETWEEN 1 AND 10),
+    gr_liv_area INTEGER,
+    exter_qual VARCHAR(20),
+    garage_cars INTEGER CHECK (garage_cars BETWEEN 1 AND 5),
+    kitchen_qual VARCHAR(20),
+    total_bsmt_sf INTEGER,
+    year_built INTEGER,
+    first_flr_SF INTEGER,
+    garage_finish VARCHAR(20),
+    full_bathrooms INTEGER CHECK (full_bathrooms BETWEEN 1 AND 5),
+    predicted_price FLOAT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
