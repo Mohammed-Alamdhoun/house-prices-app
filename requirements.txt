@@ -1,19 +1,21 @@
-numpy
-pandas
+numpy==2.4.0
+pandas==3.0.1
+pyarrow==24.0.0
 matplotlib
 
-scikit-learn
+scikit-learn==1.8.0
 
 optuna
 optuna-integration
 
-xgboost
-lightgbm
-catboost
+xgboost==3.3.0
+lightgbm==4.6.0
+catboost==1.2.10
 
 fastapi
 uvicorn
-joblib
+jinja2
+joblib==1.5.3
 
 sqlalchemy
 alembic

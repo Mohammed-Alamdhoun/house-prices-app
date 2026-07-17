@@ -1,0 +1,12 @@
+.git/
+.env
+.vscode/
+data/
+notebooks/
+outputs/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+*.bak
