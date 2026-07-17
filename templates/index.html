@@ -54,7 +54,7 @@
 
         <!-- Form Section -->
         <div class="card-body p-4 p-md-5 bg-white">
-          <form id="form" action="/predict" method="post" class="row g-4">
+          <form id="form" class="row g-4">
 
             <!-- Quality & Year -->
             <div class="col-md-6">
@@ -171,31 +171,29 @@
 </div>
 
 <script>
-    const API_URL = "http://127.0.0.1:8000/predict";
-
-    const numeric = [
-        "OverallQual",
-        "GrLivArea",
-        "GarageCars",
-        "TotalBsmtSF",
-        "YearBuilt",
-        "FirstFlrSF",
-        "FullBath"
-    ];
+    const API_URL = "/predict";
 
     const form = document.getElementById("form");
     const btn = document.getElementById("btn");
     const spinner = document.getElementById("spinner");
     const result = document.getElementById("result");
-
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const data = Object.fromEntries(new FormData(form));
+        const formData = Object.fromEntries(new FormData(form));
 
-        numeric.forEach((key) => {
-            data[key] = Number(data[key]);
-        });
+        const data = {
+            overall_qual: Number(formData.OverallQual),
+            gr_liv_area: Number(formData.GrLivArea),
+            exter_qual: formData.ExterQual,
+            garage_cars: Number(formData.GarageCars),
+            kitchen_qual: formData.KitchenQual,
+            total_bsmt_sf: Number(formData.TotalBsmtSF),
+            year_built: Number(formData.YearBuilt),
+            first_flr_sf: Number(formData.FirstFlrSF),
+            garage_finish: formData.GarageFinish,
+            full_bathrooms: Number(formData.FullBath)
+        };
 
         btn.disabled = true;
         spinner.classList.remove("d-none");
@@ -217,7 +215,7 @@
 
             result.className = "alert alert-success text-center fs-5 fw-semibold mb-0 mt-2";
 
-            result.textContent = `Predicted price: $${Math.round(price).toLocaleString("en-US")}`;
+            result.textContent = `Predicted price: $${Math.round(price.predicted_price).toLocaleString("en-US")}`;
 
         } catch (err) {
             result.className = "alert alert-danger text-center mb-0 mt-2";

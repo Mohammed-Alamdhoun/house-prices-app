@@ -12,4 +12,11 @@ lightgbm
 catboost
 
 fastapi
+uvicorn
 joblib
+
+sqlalchemy
+alembic
+psycopg2-binary
+
+python-dotenv
