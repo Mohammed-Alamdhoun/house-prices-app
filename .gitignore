@@ -1,2 +1,3 @@
-submission.csv
+outputs/
 catboost_info/
+__pycache__/

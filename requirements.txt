@@ -10,3 +10,6 @@ optuna-integration
 xgboost
 lightgbm
 catboost
+
+fastapi
+joblib
